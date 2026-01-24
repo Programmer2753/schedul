@@ -637,18 +637,22 @@ function applyFullLanguage(lang) {
   const languageOptions = document.querySelectorAll('.language-option');
   languageOptions.forEach(option => {
     const langName = option.querySelector('.lang-name');
-    if (option.dataset.lang === 'uk' && langName) {
+    if (option.dataset.lang === 'ua' && langName) {
       langName.textContent = t.profile?.ukrainian || 'Ukrainian';
     } else if (option.dataset.lang === 'en' && langName) {
       langName.textContent = t.profile?.english || 'English';
+    } else if (option.dataset.lang === 'ru' && langName) {
+      langName.textContent = t.profile?.russian || 'Russian';
     }
   });
 
   const selectedLangName = document.getElementById('selectedLangName');
-  if (selectedLangName && lang === 'uk') {
+  if (selectedLangName && lang === 'ua') {
     selectedLangName.textContent = t.profile?.ukrainian || 'Ukrainian';
   } else if (selectedLangName && lang === 'en') {
     selectedLangName.textContent = t.profile?.english || 'English';
+  } else if (selectedLangName && lang === 'ru') {
+    selectedLangName.textContent = t.profile?.russian || 'Russian';
   }
 
   const viewTabs = document.querySelectorAll('.view-tab');
