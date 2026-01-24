@@ -175,7 +175,62 @@ const i18n = {
       iAmAssistant: "🤖 I'm an AI assistant that helps:",
       planDay2: "⏰ plan your day",
       setPriorities2: "🎯 set priorities",
-      workProductively: "📊 work more productively"
+      workProductively: "📊 work more productively",
+      dayPlanTitle: "⏰ Recommended day plan:",
+      dayPlanHard: "Most difficult tasks (peak focus)",
+      dayPlanMedium: "Medium difficulty tasks",
+      dayPlanBreak: "Lunch break",
+      dayPlanMeetings: "Meetings and communication",
+      dayPlanLight: "Light tasks and planning",
+
+      pomodoroTitle: "💡 Pomodoro technique:",
+      pomodoroWork: "25 minutes of work",
+      pomodoroRest: "5 minutes rest",
+      pomodoroLong: "Long break after 4 cycles",
+
+      priorityTitle: "🎯 How to prioritize correctly:",
+      priorityUrgent: "Urgent",
+      priorityUrgentDesc: "Do immediately",
+      priorityHigh: "High",
+      priorityHighDesc: "Plan it",
+      priorityMedium: "Medium",
+      priorityMediumDesc: "Can wait",
+      priorityLow: "Low",
+      priorityLowDesc: "Do when free",
+
+      eisenhowerTitle: "📌 Eisenhower Matrix:",
+      eisenhower1: "Urgent + Important = Do now",
+      eisenhower2: "Not urgent + Important = Plan",
+      eisenhower3: "Urgent + Not important = Delegate",
+      eisenhower4: "Not urgent + Not important = Delete",
+
+      priorityHint: "💡 Click the Priority column to set it",
+
+      productivityTitle: "💡 Productivity tips:",
+      rule2min: "2-minute rule — do it immediately",
+      eatFrog: "Start with the hardest task",
+      batchTasks: "Group similar tasks",
+      noMultitasking: "Focus on one task",
+      timeBlocking: "Use time blocks",
+      noDistractions: "Disable notifications",
+      rewardYourself: "Reward yourself after work",
+      helpTitle: "🤖 I'm your AI planning assistant! Here's what I can do:",
+      helpAnalyze: "Task analysis",
+      helpAnalyzeCmd: "analyze my tasks",
+      helpPlan: "Day planning",
+      helpPlanCmd: "plan my day",
+      helpPriority: "Priorities",
+      helpPriorityCmd: "how to prioritize",
+      helpTips: "Productivity tips",
+      helpTipsCmd: "give productivity tips",
+
+      helpExamples: "Command examples:",
+      exampleAnalyze: "Analyze my tasks",
+      examplePlan: "Plan my day",
+      examplePriority: "Help with priorities",
+      exampleTips: "Give me advice",
+
+      helpFooter: "Just write what you need 😊"
     },
 
     languageChanged: "Language changed to English"
@@ -2566,68 +2621,73 @@ function applyLang(lang) {
       }
 
       if (hasWords(['розподіли', 'план', 'schedule', 'розклад', 'день', 'час', 'time', 'day'])) {
-        return `<p><strong>⏰ Рекомендований план дня:</strong></p>
+        return `
+                <p><strong>${t.ai.dayPlanTitle}</strong></p>
                 <ul>
-                  <li>🌅 <strong>09:00-11:00</strong> - Найскладніші завдання (пік продуктивності)</li>
-                  <li>☕ <strong>11:00-13:00</strong> - Середні за складністю завдання</li>
-                  <li>🍽️ <strong>13:00-14:00</strong> - Обідня перерва</li>
-                  <li>📞 <strong>14:00-16:00</strong> - Зустрічі та комунікація</li>
-                  <li>📝 <strong>16:00-18:00</strong> - Дрібні завдання та планування</li>
+                  <li>🌅 <strong>09:00–11:00</strong> — ${t.ai.dayPlanHard}</li>
+                  <li>☕ <strong>11:00–13:00</strong> — ${t.ai.dayPlanMedium}</li>
+                  <li>🍽️ <strong>13:00–14:00</strong> — ${t.ai.dayPlanBreak}</li>
+                  <li>📞 <strong>14:00–16:00</strong> — ${t.ai.dayPlanMeetings}</li>
+                  <li>📝 <strong>16:00–18:00</strong> — ${t.ai.dayPlanLight}</li>
                 </ul>
-                <p><strong>💡 Техніка Pomodoro:</strong></p>
+                <p><strong>${t.ai.pomodoroTitle}</strong></p>
                 <ul>
-                  <li>🍅 25 хвилин роботи</li>
-                  <li>☕ 5 хвилин відпочинку</li>
-                  <li>🎯 Після 4 циклів - довга перерва 15-30 хвилин</li>
+                  <li>🍅 ${t.ai.pomodoroWork}</li>
+                  <li>☕ ${t.ai.pomodoroRest}</li>
+                  <li>🎯 ${t.ai.pomodoroLong}</li>
                 </ul>`;
       }
       
       if (hasWords(['пріоритет', 'важлив', 'priority', 'терміно', ' important'])) {
-        return `<p><strong>🎯 Як правильно розставити пріоритети:</strong></p>
+        return `
+                <p><strong>${t.ai.priorityTitle}</strong></p>
                 <ul>
-                  <li>🔴 <strong>Urgent</strong> - Терміново і важливо (робити зараз!)</li>
-                  <li>🟠 <strong>High</strong> - Важливо, але не терміново (запланувати)</li>
-                  <li>🟡 <strong>Medium</strong> - Середній пріоритет (можна відкласти)</li>
-                  <li>🟢 <strong>Low</strong> - Низький пріоритет (коли буде час)</li>
+                  <li>🔴 <strong>${t.ai.priorityUrgent}</strong> — ${t.ai.priorityUrgentDesc}</li>
+                  <li>🟠 <strong>${t.ai.priorityHigh}</strong> — ${t.ai.priorityHighDesc}</li>
+                  <li>🟡 <strong>${t.ai.priorityMedium}</strong> — ${t.ai.priorityMediumDesc}</li>
+                  <li>🟢 <strong>${t.ai.priorityLow}</strong> — ${t.ai.priorityLowDesc}</li>
                 </ul>
-                <p><strong>📌 Матриця Ейзенхауера:</strong></p>
+                <p><strong>${t.ai.eisenhowerTitle}</strong></p>
                 <ul>
-                  <li><strong>Терміново + Важливо</strong> = робити негайно</li>
-                  <li><strong>Не терміново + Важливо</strong> = запланувати</li>
-                  <li><strong>Терміново + Не важливо</strong> = делегувати</li>
-                  <li><strong>Не терміново + Не важливо</strong> = видалити</li>
+                  <li>${t.ai.eisenhower1}</li>
+                  <li>${t.ai.eisenhower2}</li>
+                  <li>${t.ai.eisenhower3}</li>
+                  <li>${t.ai.eisenhower4}</li>
                 </ul>
-                <p>💡 Клікніть на колонку Priority у завданні, щоб встановити пріоритет!</p>`;
+                <p>${t.ai.priorityHint}</p>`;
       }
       
       if (hasWords(['допомога', 'help', 'що ти', 'команд', 'можеш', 'can', 'command'])) {
-        return `<p><strong>🤖 Я AI асистент для планування! Ось що я вмію:</strong></p>
+        return `
+                <p><strong>${t.ai.helpTitle}</strong></p>
                 <ul>
-                  <li>📊 <strong>Аналіз завдань</strong> - "проаналізуй мої завдання"</li>
-                  <li>⏰ <strong>План дня</strong> - "розподіли завдання на день"</li>
-                  <li>🎯 <strong>Пріоритети</strong> - "як розставити пріоритети"</li>
-                  <li>💡 <strong>Поради</strong> - "дай поради щодо продуктивності"</li>
+                  <li>📊 <strong>${t.ai.helpAnalyze}</strong> — "${t.ai.helpAnalyzeCmd}"</li>
+                  <li>⏰ <strong>${t.ai.helpPlan}</strong> — "${t.ai.helpPlanCmd}"</li>
+                  <li>🎯 <strong>${t.ai.helpPriority}</strong> — "${t.ai.helpPriorityCmd}"</li>
+                  <li>💡 <strong>${t.ai.helpTips}</strong> — "${t.ai.helpTipsCmd}"</li>
                 </ul>
-                <p><strong>Приклади команд:</strong></p>
+                <p><strong>${t.ai.helpExamples}</strong></p>
                 <ul>
-                  <li>"Проаналізуй завдання"</li>
-                  <li>"Розподіли на день"</li>
-                  <li>"Допоможи з пріоритетами"</li>
-                  <li>"Дай пораду"</li>
+                  <li>"${t.ai.exampleAnalyze}"</li>
+                  <li>"${t.ai.examplePlan}"</li>
+                  <li>"${t.ai.examplePriority}"</li>
+                  <li>"${t.ai.exampleTips}"</li>
                 </ul>
-                <p>Просто напишіть, що вам потрібно! 😊</p>`;
+                <p>${t.ai.helpFooter}</p>
+        `;
       }
       
       if (hasWords(['prod', 'effect', 'advice', 'совет', 'порад', 'продуктивніст', 'ефективн', 'productivity'])) {
-        return `<p><strong>💡 Поради щодо продуктивності:</strong></p>
+        return `
+                <p><strong>${t.ai.productivityTitle}</strong></p>
                 <ul>
-                  <li>🎯 <strong>Правило 2 хвилин</strong> - якщо завдання займе менше 2 хвилин, зробіть його одразу</li>
-                  <li>🐸 <strong>З'їжте жабу</strong> - почніть з найнеприємнішого завдання</li>
-                  <li>📝 <strong>Batch tasking</strong> - групуйте схожі завдання</li>
-                  <li>🚫 <strong>Ні багатозадачності</strong> - фокус на одному завданні</li>
-                  <li>⏰ <strong>Time blocking</strong> - виділяйте час блоками</li>
-                  <li>📱 <strong>Прибрати відволікання</strong> - вимкніть сповіщення</li>
-                  <li>🎉 <strong>Нагороджуйте себе</strong> - після виконання завдань</li>
+                  <li>🎯 ${t.ai.rule2min}</li>
+                  <li>🐸 ${t.ai.eatFrog}</li>
+                  <li>📝 ${t.ai.batchTasks}</li>
+                  <li>🚫 ${t.ai.noMultitasking}</li>
+                  <li>⏰ ${t.ai.timeBlocking}</li>
+                  <li>📱 ${t.ai.noDistractions}</li>
+                  <li>🎉 ${t.ai.rewardYourself}</li>
                 </ul>`;
       }
       
