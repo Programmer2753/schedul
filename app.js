@@ -21,7 +21,7 @@ const i18n = {
     resetPassword: "Reset password",
     cancelReset: "Cancel",
 
-    heroTitle: "Turn your ideas into reality",
+    heroTitle: "Your ideas. Your actions.",
     heroSubtitle:
       "The planner helps you organize your work, manage projects, and collaborate with your team.",
 
@@ -274,7 +274,7 @@ const i18n = {
     resetPassword: "Скинути пароль",
     cancelReset: "Скасувати",
 
-    heroTitle: "Перетвори свої ідеї в реальність",
+    heroTitle: "Ваші ідеї. Ваші дії.",
     heroSubtitle:
       "Планувальник допоможе організувати роботу, керувати проєктами та співпрацювати з командою.",
 
@@ -472,7 +472,7 @@ const i18n = {
     resetPassword: "Сбросить пароль",
     cancelReset: "Отмена",
 
-    heroTitle: "Превращайте идеи в реальность",
+    heroTitle: "Ваши идеи. Ваши действия.",
     heroSubtitle:
       "Планировщик помогает организовать работу, управлять проектами и сотрудничать с командой.",
 
