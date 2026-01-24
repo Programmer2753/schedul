@@ -32,7 +32,7 @@ const i18n = {
     solutions: "Solutions",
     community: "Community",
     resources: "Resources",
-    about: "About",
+    aboutus: "About",
 
     notifications: {
       fillAll: "Please fill in all fields",
@@ -60,6 +60,15 @@ const i18n = {
       myProfile: "My Profile",
       ukrainian: "Ukrainian",
       english: "English"
+    },
+
+    about: {
+      heroTitle: "Our mission.",
+      introTitle: "Save people time by making the world more productive.",
+      introP1:
+        "While we absolutely love productivity software, we believe productivity, in general, is broken. There's just too many tools to keep track of, too many things in entirely separate ecosystems. There has to be a better way to work. While we absolutely love productivity software, we believe productivity, in general, is broken. There's just too many tools to keep track of, too many things in entirely separate ecosystems. There has to be a better way to work - that's why we created Schedule, first an internal tool, now as a way to fulfill our vision of making the world more productive.",
+      introP2:
+        "Eventually, our goal is to have all work live in Schedule - thereby making people more productive and giving back at least 20% of time to dedicate to other things. One app to replace them all. We are just getting started and are very grateful to everyone who is working with our team."
     },
 
     menu: {
@@ -276,7 +285,7 @@ const i18n = {
     solutions: "Рішення",
     community: "Спільнота",
     resources: "Ресурси",
-    about: "Про нас",
+    aboutus: "Про нас",
 
     notifications: {
       fillAll: "Будь ласка, заповніть всі поля",
@@ -304,6 +313,15 @@ const i18n = {
       myProfile: "Мій профіль",
       ukrainian: "Українська",
       english: "English"
+    },
+
+    about: {
+      heroTitle: "Наша місія.",
+      introTitle: "Зберігати час людей, роблячи світ більш продуктивним.",
+      introP1:
+        "Хоча ми дуже любимо програмне забезпечення для підвищення продуктивності, ми вважаємо, що продуктивність, загалом, не працює. Є занадто багато інструментів, за якими потрібно стежити, занадто багато речей у повністю відокремлених екосистемах. Повинно бути краще рішення для роботи. Хоча ми дуже любимо програмне забезпечення для підвищення продуктивності, ми вважаємо, що продуктивність, загалом, не працює. Занадто багато інструментів, за якими потрібно стежити, занадто багато речей у повністю відокремлених екосистемах. Повинно бути краще рішення для роботи — саме тому ми створили SelfNote, спочатку як внутрішній інструмент, а тепер як спосіб реалізувати нашу мрію про підвищення продуктивності у світі.",
+      introP2:
+        "Зрештою, наша мета полягає в тому, щоб вся робота відбувалася в SelfNote, що дозволить людям бути більш продуктивними та звільнить щонайменше 20% часу для інших справ. Один додаток замінить усі інші. Ми тільки починаємо і дуже вдячні всім, хто працює з нашою командою."
     },
 
     menu: {
@@ -465,7 +483,7 @@ const i18n = {
     solutions: "Решения",
     community: "Сообщество",
     resources: "Ресурсы",
-    about: "О нас",
+    aboutus: "О нас",
 
     notifications: {
       fillAll: "Пожалуйста, заполните все поля",
@@ -494,6 +512,15 @@ const i18n = {
       ukrainian: "Украинский",
       english: "Английский",
       russian: "Русский"
+    },
+
+    about: {
+      heroTitle: "Наша миссия.",
+      introTitle: "Экономить время людей, делая мир более продуктивным.",
+      introP1:
+        "Хотя мы очень любим программное обеспечение для повышения производительности, мы считаем, что в целом производительность не работает. Существует слишком много инструментов, за которыми нужно следить, слишком много вещей в совершенно отдельных экосистемах. Должен быть лучший способ работы. Хотя мы очень любим программное обеспечение для повышения производительности, мы считаем, что в целом производительность не работает. Слишком много инструментов, за которыми нужно следить, слишком много вещей в совершенно отдельных экосистемах. Должен быть лучший способ работы — именно поэтому мы создали SelfNote, сначала как внутренний инструмент, а теперь как способ реализовать нашу идею сделать мир более продуктивным.",
+      introP2:
+        "Eventually, our goal is to have all work live in Schedule - thereby making people more productive and giving back at least 20% of time to dedicate to other things. One app to replace them all. We are just getting started and are very grateful to everyone who is working with our team."
     },
 
     menu: {
@@ -579,7 +606,7 @@ const i18n = {
     },
 
     ai: {
-      ntro: "Привет! Я AI ассистент для планирования задач.",
+      intro: "Привет! Я AI ассистент для планирования задач.",
       introHelp: "Я могу помочь вам:",
       introAnalyze: "Проанализировать ваши задачи",
       introPlan: "Распределить их по времени",
@@ -663,6 +690,13 @@ function applyFullLanguage(lang) {
   setTextSafe('#registerButton .txt', t.createAccount);
   setTextSafe('#resetPasswordButton .txt', t.resetPassword);
 
+
+  // ===== ABOUT PAGE =====
+  setTextSafe('.about-title', t.about?.heroTitle);
+  setTextSafe('.about-intro-title', t.about?.introTitle);
+  setTextSafe('.about-intro-p1', t.about?.introP1);
+  setTextSafe('.about-intro-p2', t.about?.introP2);
+
   const preTextLog = document.querySelector('.pre-link-text-log');
   if (preTextLog) preTextLog.textContent = t.noAccount;
   
@@ -674,7 +708,7 @@ function applyFullLanguage(lang) {
   setTextSafe('#solutions', t.solutions);
   setTextSafe('#community', t.community);
   setTextSafe('#resources', t.resources);
-  setTextSafe('#about', t.about);
+  setTextSafe('#about', t.aboutus);
   
   setTextSafe('#ort-reg', t.divider);
   setTextSafe('#ort-log', t.divider);
@@ -1710,7 +1744,7 @@ function applyLang(lang) {
       if (profileRegistered && user.registeredAt) {
         const date = new Date(user.registeredAt);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const lang = localStorage.getItem('site_lang') || 'uk';
+        const lang = localStorage.getItem('site_lang') || 'en';
         const locale = lang === 'ua' || lang === 'uk' ? 'uk-UA' : 'en-US';
         profileRegistered.textContent = date.toLocaleDateString(locale, options);
       }
@@ -3068,7 +3102,7 @@ function applyLang(lang) {
         const description = document.getElementById('taskDescriptionInput').value.trim();
         const selectedPriority = document.querySelector('.priority-option.active');
         const priority = selectedPriority ? selectedPriority.dataset.priority : 'none';
-        const currentLang = localStorage.getItem('site_lang') || 'uk';
+        const currentLang = localStorage.getItem('site_lang') || 'en';
         const t = i18n[currentLang];
         
         if (!title) {
