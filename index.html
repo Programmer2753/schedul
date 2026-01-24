@@ -224,7 +224,7 @@
 
             <div class="hero-section">
                 <div class="hero-content">
-                    <h1 class="hero-title">Turn your ideas into reality</h1>
+                    <h1 class="hero-title">Your ideas. Your actions.</h1>
                     <p class="hero-subtitle">The planner helps you organize your work, manage projects, and collaborate with your team.</p>
                     <button class="hero-btn">
                         <span class="arrow">→</span>
@@ -713,17 +713,15 @@
 
                 <div class="ai-chat" id="aiChat">
                     <div class="ai-message ai-message-bot">
-                        <div class="ai-avatar">🤖</div>
-                        <div class="ai-bubble">
-                            <p>Привіт! Я AI асистент для планування завдань. Я можу допомогти вам:</p>
-                            <ul>
-                                <li>📋 Проаналізувати ваші завдання</li>
-                                <li>⏰ Розподілити їх за часом</li>
-                                <li>🎯 Пріоритизувати важливі справи</li>
-                                <li>💡 Дати рекомендації щодо організації</li>
-                            </ul>
-                            <p>Напишіть "проаналізуй завдання" або задайте своє питання!</p>
-                        </div>
+                        <p>${t.ai?.intro || '👋 Hello! I am your AI task planning assistant.'}</p>
+                        <p>${t.ai?.introHelp || 'I can help you with:'}</p>
+                        <ul>
+                            <li>📋 ${t.ai?.introAnalyze || 'Analyze your tasks'}</li>
+                            <li>⏰ ${t.ai?.introPlan || 'Plan them over time'}</li>
+                            <li>🎯 ${t.ai?.introPrioritize || 'Prioritize important things'}</li>
+                            <li>💡 ${t.ai?.introRecommend || 'Give organization tips'}</li>
+                        </ul>
+                        <p>${t.ai?.introHint || 'Write "Analyze tasks" or ask your question!'}</p>
                     </div>
                 </div>
 

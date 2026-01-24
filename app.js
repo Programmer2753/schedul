@@ -145,6 +145,13 @@ const i18n = {
     },
 
     ai: {
+      intro: "👋 Hello! I'm your AI task planning assistant.",
+      introHelp: "I can help you with:",
+      introAnalyze: "Analyze your tasks",
+      introPlan: "Plan them over time",
+      introPrioritize: "Prioritize important tasks",
+      introRecommend: "Give organization tips",
+      introHint: "Write \"Analyze tasks\" or ask your question!",
       greeting: "👋 Hello! I'm your AI planning assistant.",
       howCanHelp: "How can I help you today? 😊",
       noTasks: "You don't have any tasks yet. Create your first task by clicking the 'Add Task' button!",
@@ -382,6 +389,13 @@ const i18n = {
     },
 
     ai: {
+      intro: "Привіт! Я AI асистент для планування завдань.",
+      introHelp: "Я можу допомогти вам:",
+      introAnalyze: "Проаналізувати ваші завдання",
+      introPlan: "Розподілити їх за часом",
+      introPrioritize: "Пріоритизувати важливі справи",
+      introRecommend: "Дати рекомендації щодо організації",
+      introHint: "Напишіть «проаналізуй завдання» або задайте своє питання!",
       greeting: "👋 Привіт! Я твій AI асистент для планування.",
       howCanHelp: "Чим можу допомогти сьогодні? 😊",
       noTasks: "У вас поки немає завдань. Створіть своє перше завдання, натиснувши кнопку 'Додати завдання'!",
@@ -565,6 +579,13 @@ const i18n = {
     },
 
     ai: {
+      ntro: "Привет! Я AI ассистент для планирования задач.",
+      introHelp: "Я могу помочь вам:",
+      introAnalyze: "Проанализировать ваши задачи",
+      introPlan: "Распределить их по времени",
+      introPrioritize: "Расставить приоритеты",
+      introRecommend: "Дать советы по организации",
+      introHint: "Напишите «проанализируй задачи» или задайте свой вопрос!",
       greeting: "👋 Привет! Я твой AI-ассистент по планированию.",
       howCanHelp: "Чем я могу помочь сегодня? 😊",
       noTasks: "У тебя пока нет задач. Создай первую, нажав кнопку «Добавить задачу»!",
@@ -2736,17 +2757,15 @@ function applyLang(lang) {
       
       const hasMessages = aiChat.children.length > 0;
       if (!hasMessages) {
-        const greeting = `<p>${t.ai?.greeting || '👋 Hello!'}</p>
-                         <p>${t.ai?.howCanHelp || 'How can I help? 😊'}</p>
-                         <br>
-                         <p><strong>${t.ai?.goodQuestion || '🤔 Good question! Here\'s what I can do for you:'}</strong></p>
-                         <ul>
-                           <li>${t.ai?.analyzeCommand || '💬 "Analyze my tasks" - show statistics'}</li>
-                           <li>${t.ai?.planDay || '⏰ "Plan the day" - create schedule'}</li>
-                           <li>${t.ai?.howToPrioritize || '🎯 "How to prioritize" - explain system'}</li>
-                           <li>${t.ai?.giveTips || '💡 "Give tips" - share productivity hacks'}</li>
-                         </ul>
-                         <p>${t.ai?.justAsk || 'Just write the command in your own words! 😊'}</p>`;
+        const greeting = `<p>${t.ai?.intro || '👋 Hello! I am your AI task planning assistant.'}</p>
+                          <p>${t.ai?.introHelp || 'I can help you with:'}</p>
+                          <ul>
+                            <li>📋 ${t.ai?.introAnalyze || 'Analyze your tasks'}</li>
+                            <li>⏰ ${t.ai?.introPlan || 'Plan them over time'}</li>
+                            <li>🎯 ${t.ai?.introPrioritize || 'Prioritize important things'}</li>
+                            <li>💡 ${t.ai?.introRecommend || 'Give organization tips'}</li>
+                          </ul>
+                          <p>${t.ai?.introHint || 'Write "Analyze tasks" or ask your question!'}</p>`;
         
         addAIMessage(greeting, false);
       }
