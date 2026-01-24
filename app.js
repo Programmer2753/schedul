@@ -2486,7 +2486,7 @@ function applyLang(lang) {
 
     function generateAIResponse(userMessage) {
       const lowerMsg = userMessage.toLowerCase().trim();
-      const currentLang = localStorage.getItem('site_lang') || 'uk';
+      const currentLang = localStorage.getItem('site_lang') || 'en';
       const t = i18n[currentLang];
       
       const hasWords = (words) => words.some(word => lowerMsg.includes(word));
@@ -2667,7 +2667,7 @@ function applyLang(lang) {
       const aiChat = document.getElementById('aiChat');
       if (!aiChat) return;
       
-      const currentLang = localStorage.getItem('site_lang') || 'uk';
+      const currentLang = localStorage.getItem('site_lang') || 'en';
       const t = i18n[currentLang];
       
       const hasMessages = aiChat.children.length > 0;
