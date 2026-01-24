@@ -2751,24 +2751,25 @@ function applyLang(lang) {
     function initAIGreeting() {
       const aiChat = document.getElementById('aiChat');
       if (!aiChat) return;
-      
+
       const currentLang = localStorage.getItem('site_lang') || 'en';
       const t = i18n[currentLang];
-      
-      const hasMessages = aiChat.children.length > 0;
-      if (!hasMessages) {
-        const greeting = `<p>${t.ai?.intro || '👋 Hello! I am your AI task planning assistant.'}</p>
-                          <p>${t.ai?.introHelp || 'I can help you with:'}</p>
-                          <ul>
-                            <li>📋 ${t.ai?.introAnalyze || 'Analyze your tasks'}</li>
-                            <li>⏰ ${t.ai?.introPlan || 'Plan them over time'}</li>
-                            <li>🎯 ${t.ai?.introPrioritize || 'Prioritize important things'}</li>
-                            <li>💡 ${t.ai?.introRecommend || 'Give organization tips'}</li>
-                          </ul>
-                          <p>${t.ai?.introHint || 'Write "Analyze tasks" or ask your question!'}</p>`;
-        
-        addAIMessage(greeting, false);
-      }
+
+      if (aiChat.children.length > 0) return;
+
+      const greeting = `
+        <p>${t.ai?.intro}</p>
+        <p>${t.ai?.introHelp}</p>
+        <ul>
+          <li>📋 ${t.ai?.introAnalyze}</li>
+          <li>⏰ ${t.ai?.introPlan}</li>
+          <li>🎯 ${t.ai?.introPrioritize}</li>
+          <li>💡 ${t.ai?.introRecommend}</li>
+        </ul>
+        <p>${t.ai?.introHint}</p>
+      `;
+
+      addAIMessage(greeting, false);
     }
 
     function updateDashboardStats() {
