@@ -10,7 +10,7 @@ class AIRequest(BaseModel):
     message: str
     notes: list  # список заметок
 
-@app.post('/ai')
+@app.post('/ai.py')
 async def ai_chat(req: AIRequest):
     context = "Вот заметки пользователя:\n"
     for note in req.notes:

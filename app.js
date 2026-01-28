@@ -2768,7 +2768,7 @@ function applyLang(lang) {
       const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
       // Отправляем на backend
-      const response = await fetch('/ai', {
+      const response = await fetch('/ai.py', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, notes })
