@@ -2757,17 +2757,26 @@ function applyLang(lang) {
               <p>${t.ai?.justAsk || 'Just write the command in your own words! 😊'}</p>`;
     }
 
-    function sendAIMessage() {
+    async function sendAIMessage() {
       const message = aiInput.value.trim();
       if (!message) return;
-      
+
       addAIMessage(message, true);
       aiInput.value = '';
-      
-      setTimeout(() => {
-        const response = generateAIResponse(message);
-        addAIMessage(response, false);
-      }, 500);
+
+      // Получаем заметки из localStorage (или формируем контекст)
+      const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+
+      // Отправляем на backend
+      const response = await fetch('/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, notes })
+      });
+
+      const data = await response.json();
+
+      addAIMessage(data.answer, false);
     }
 
     if (aiSendBtn) {
