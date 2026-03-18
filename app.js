@@ -2796,7 +2796,12 @@ function applyLang(lang) {
       if (!aiChat) return;
 
       const currentLang = localStorage.getItem('site_lang') || 'en';
-      const t = i18n[currentLang];
+      const t = typeof i18n !== 'undefined' && i18n[currentLang] ? i18n[currentLang] : {};
+
+      if (!t.ai) {
+        console.warn(`Переводы для AI (язык: ${currentLang}) не найдены.`);
+        return; 
+      }
 
       if (aiChat.children.length > 0) return;
 
