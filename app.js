@@ -2795,8 +2795,9 @@ function applyLang(lang) {
       const aiChat = document.getElementById('aiChat');
       if (!aiChat) return;
 
-      const currentLang = localStorage.getItem('site_lang') || 'en';
-      const t = typeof i18n !== 'undefined' && i18n[currentLang] ? i18n[currentLang] : {};
+      const savedLang = localStorage.getItem('site_lang');
+      const currentLang = i18n[savedLang] ? savedLang : 'en';
+      const t = i18n[currentLang];
 
       if (!t.ai) {
         console.warn(`Переводы для AI (язык: ${currentLang}) не найдены.`);
@@ -3048,7 +3049,7 @@ function applyLang(lang) {
         selectedDateForTask = selectedDate;
         const date = new Date(selectedDate);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const lang = localStorage.getItem('site_lang') || 'uk';
+        const lang = localStorage.getItem('site_lang') || 'en';
         const locale = lang === 'ua' || lang === 'uk' ? 'uk-UA' : 'en-US';
         
         document.getElementById('selectedDateDisplay').textContent = date.toLocaleDateString(locale, options);
