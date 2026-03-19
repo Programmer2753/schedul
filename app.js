@@ -2763,20 +2763,30 @@ function applyLang(lang) {
 
       addAIMessage(message, true);
       aiInput.value = '';
+      
+      const rawNotes = JSON.parse(localStorage.getItem('notes') || '[]');
+      const notes = rawNotes.map(note => typeof note === 'object' ? (note.text || note.content || JSON.stringify(note)) : note);
 
-      // Получаем заметки из localStorage (или формируем контекст)
-      const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+      try {
+        const response = await fetch('/api/ai_chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message, notes })
+        });
 
-      // Отправляем на backend
-      const response = await fetch('/api/ai_chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, notes })
-      });
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error("Ошибка сервера:", errorData);
+          addAIMessage("Ошибка на сервере. Проверь консоль.", false);
+          return;
+        };
 
-      const data = await response.json();
-
-      addAIMessage(data.answer, false);
+        const data = await response.json();
+        addAIMessage(data.answer, false);
+      } catch (err) {
+        console.error("Ошибка запроса:", err);
+        addAIMessage("Не удалось связаться с ИИ.", false);
+      }
     }
 
     if (aiSendBtn) {
