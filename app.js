@@ -2764,11 +2764,14 @@ function applyLang(lang) {
       addAIMessage(message, true);
       aiInput.value = '';
 
+      const rawNotes = JSON.parse(localStorage.getItem('notes') || '[]');
+      const notes = rawNotes.map(note => typeof note === 'object' ? (note.text || note.content || JSON.stringify(note)) : note);
+
       try {
         const response = await fetch('/api/ai_chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: message, history: [] })
+          body: JSON.stringify({ message: message, history: [], notes: notes })
         });
 
         if (!response.ok) {
