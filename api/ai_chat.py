@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import google.generativeai as genai
 import os
-from typing import List
 
 api_key = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=api_key)
@@ -10,7 +9,6 @@ genai.configure(api_key=api_key)
 MODEL_NAME = 'models/gemma-3-27b-it'
 
 app = FastAPI()
-
 model = genai.GenerativeModel(model_name=MODEL_NAME)
 
 class AIRequest(BaseModel):
