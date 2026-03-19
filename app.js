@@ -2763,21 +2763,18 @@ function applyLang(lang) {
 
       addAIMessage(message, true);
       aiInput.value = '';
-      
-      const rawNotes = JSON.parse(localStorage.getItem('notes') || '[]');
-      const notes = rawNotes.map(note => typeof note === 'object' ? (note.text || note.content || JSON.stringify(note)) : note);
 
       try {
         const response = await fetch('/api/ai_chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message, notes })
+          body: JSON.stringify({ message: message, history: [] })
         });
 
         if (!response.ok) {
           const errorData = await response.json();
-          console.error("Ошибка сервера:", errorData);
-          addAIMessage("Ошибка на сервере. Проверь консоль.", false);
+          console.error("Server Error:", errorData);
+          addAIMessage("Error on server. Check console.", false);
           return;
         };
 
