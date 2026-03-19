@@ -13,8 +13,8 @@ model = genai.GenerativeModel(model_name=MODEL_NAME)
 
 class AIRequest(BaseModel):
     message: str
-    history: list[dict]
-    notes: list[str]
+    history: list[dict] = []
+    notes: list[str] = []
 
 @app.post("/api/ai_chat")
 async def ai_chat(req: AIRequest):
