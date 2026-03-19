@@ -14,6 +14,7 @@ model = genai.GenerativeModel(model_name=MODEL_NAME)
 class AIRequest(BaseModel):
     message: str
     history: list[dict]
+    notes: list[str]
 
 @app.post("/api/ai_chat")
 async def ai_chat(req: AIRequest):
@@ -41,8 +42,16 @@ async def ai_chat(req: AIRequest):
                 prefix = "User" if msg['role'] == "user" else "SelfNote"
                 history_text += f"[{prefix}]: {msg['content']}\n"
 
+        notes_context = ""
+        if req.notes:
+            notes_context = "USER'S CURRENT NOTES (Use this information to assist the user):\n"
+            for note in req.notes:
+                notes_context += f"- {note}\n"
+            notes_context += "\n"
+
         user_prompt = (
             f"### SYSTEM MANUAL:\n{system_rules}\n\n"
+            f"{notes_context}"
             f"{history_text}\n"
             f"### NEW MESSAGE FROM A USER:\n{req.message}\n\n"
             f"YOUR REPLY (without any unnecessary greetings):"
