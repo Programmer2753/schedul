@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import google.generativeai as genai
 import os
+from typing import List
 
 api_key = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=api_key)
