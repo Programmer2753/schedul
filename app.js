@@ -2764,19 +2764,30 @@ function applyLang(lang) {
       addAIMessage(message, true);
       aiInput.value = '';
 
-      // Получаем заметки из localStorage (или формируем контекст)
-      const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+      const localResponse = generateAIResponse(message);
 
-      // Отправляем на backend
-      const response = await fetch('/api/ai_chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, notes })
-      });
+      const isGeneric = localResponse.includes('goodQuestion') || localResponse.includes('🤔');
+  
+      if (!isGeneric) {
+        addAIMessage(localResponse, false);
+        return;
+      }
+      try {
+        const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
-      const data = await response.json();
+        const response = await fetch('/api/ai_chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message, notes })
+        });
 
-      addAIMessage(data.answer, false);
+        if (!response.ok) throw new Error('Server Error');
+
+        const data = await response.json();
+        addAIMessage(data.answer, false);
+      } catch (err) {
+        addAIMessage("⚠️ Ошибка соединения с ИИ. Проверь лимиты или интернет.", false);
+      }
     }
 
     if (aiSendBtn) {
