@@ -2781,6 +2781,8 @@ function applyLang(lang) {
         }
       }
 
+      console.log("Найденные задачи юзера:", userTasks);
+
       try {
         const response = await fetch('/api/ai_chat', {
           method: 'POST',
