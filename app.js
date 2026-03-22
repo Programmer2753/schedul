@@ -1667,7 +1667,6 @@ function applyLang(lang) {
     const footer = $('.footer');
     const avatarLetter = document.getElementById('avatarLetter');
     const userAvatar = document.getElementById('userAvatar');
-    let chatContext = JSON.parse(localStorage.getItem('ai_chat_history') || '[]');
 
     function updateUIForUser() {
       const currentUser = getCurrentUser();
@@ -2565,6 +2564,7 @@ function applyLang(lang) {
     const aiInput = document.getElementById('aiInput');
     const aiSendBtn = document.getElementById('aiSendBtn');
     const aiChat = document.getElementById('aiChat');
+    let chatContext = JSON.parse(localStorage.getItem('ai_chat_history') || '[]');
 
     function addAIMessage(message, isUser = false) {
       const messageDiv = document.createElement('div');
