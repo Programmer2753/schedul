@@ -2563,6 +2563,7 @@ function applyLang(lang) {
     const aiInput = document.getElementById('aiInput');
     const aiSendBtn = document.getElementById('aiSendBtn');
     const aiChat = document.getElementById('aiChat');
+    let chatContext = [];
 
     function addAIMessage(message, isUser = false) {
       const messageDiv = document.createElement('div');
@@ -2764,6 +2765,8 @@ function applyLang(lang) {
       addAIMessage(message, true);
       aiInput.value = '';
 
+      chatContext.push({ role: "user", content: message });
+
       const rawNotes = JSON.parse(localStorage.getItem('notes') || '[]');
       const notes = rawNotes.map(note => typeof note === 'object' ? (note.text || note.content || JSON.stringify(note)) : note);
 
@@ -2771,9 +2774,16 @@ function applyLang(lang) {
         const response = await fetch('/api/ai_chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: message, history: [], notes: notes })
+          body: JSON.stringify({ message: message, history: chatContext, notes: notes })
         });
         console.log(message, "\n", history, "\n", notes)
+
+        if (response.ok) {
+          const data = await response.json();
+          addAIMessage(data.answer, false);
+          chatContext.push({ role: "assistant", content: data.answer });
+          if (chatContext.length > 10) chatContext.shift();
+        }
 
         if (!response.ok) {
           const errorData = await response.json();
