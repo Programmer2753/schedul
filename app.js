@@ -2107,7 +2107,7 @@ function applyLang(lang) {
       } catch(e){}
     }
 
-    console.info('schedule.js initialized', {
+    console.info('app.js initialized', {
       headerExists: !!header,
       modalLogExists: !!modalLog,
       modalStartExists: !!modalStart,
@@ -2608,7 +2608,7 @@ function applyLang(lang) {
       
       const hasWords = (words) => words.some(word => lowerMsg.includes(word));
       
-      if (hasWords(['проаналіз', 'анал', 'завдан', 'analyze', 'task', 'статус', 'скільки'])) {
+      if (hasWords(['проанал', 'анал', 'завдан', 'analyze', 'task', 'статус', 'скільки'])) {
         const tasks = analyzeTasksAI();
         
         if (tasks.length === 0) {
@@ -2766,19 +2766,28 @@ function applyLang(lang) {
 
       addAIMessage(message, true);
       aiInput.value = '';
-
       chatContext.push({ role: "user", content: message });
 
-      const rawNotes = JSON.parse(localStorage.getItem('notes') || '[]');
-      const notes = rawNotes.map(note => typeof note === 'object' ? (note.text || note.content || JSON.stringify(note)) : note);
+      const allUsers = JSON.parse(localStorage.getItem('users') || '[]');
+      const currentUserEmail = localStorage.getItem('currentUserEmail');
+      let userTasks = [];
+
+      if (currentUserEmail) {
+        const currentUser = allUsers.find(u => u.email === currentUserEmail);
+        if (currentUser && currentUser.tasks) {
+          userTasks = currentUser.tasks.map(t => 
+          typeof t === 'object' ? (t.name || t.text || JSON.stringify(t)) : t
+          );
+        }
+      }
 
       try {
         const response = await fetch('/api/ai_chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: message, history: chatContext, notes: notes })
+          body: JSON.stringify({ message: message, history: chatContext, notes: userTasks })
         });
-        console.log("Данные перед отправкой:", { message, chatContext, notes });
+        console.log("Данные перед отправкой:", { message, chatContext, userTasks });
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -2792,7 +2801,7 @@ function applyLang(lang) {
         chatContext.push({ role: "assistant", content: data.answer });
         if (chatContext.length > 10) chatContext.shift();
         localStorage.setItem('ai_chat_history', JSON.stringify(chatContext));
-        
+
         console.log(data)
         console.log(chatContext)
       } catch (err) {
