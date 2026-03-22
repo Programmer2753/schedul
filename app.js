@@ -2107,16 +2107,6 @@ function applyLang(lang) {
       } catch(e){}
     }
 
-    console.info('app.js initialized', {
-      headerExists: !!header,
-      modalLogExists: !!modalLog,
-      modalStartExists: !!modalStart,
-      modalResetExists: !!modalReset,
-      btnStartExists: !!btnStart,
-      btnLoginExists: !!btnLogin,
-      langBtnExists: !!langBtn
-    });
-
     const registerButton = $('#registerButton');
     const loginButton = $('#loginButton');
     const resetPasswordButton = $('#resetPasswordButton');
@@ -2781,15 +2771,12 @@ function applyLang(lang) {
         }
       }
 
-      console.log("Найденные задачи юзера:", userTasks);
-
       try {
         const response = await fetch('/api/ai_chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: message, history: chatContext, notes: userTasks })
         });
-        console.log("Данные перед отправкой:", { message, chatContext, userTasks });
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -2804,11 +2791,9 @@ function applyLang(lang) {
         if (chatContext.length > 10) chatContext.shift();
         localStorage.setItem('ai_chat_history', JSON.stringify(chatContext));
 
-        console.log(data)
-        console.log(chatContext)
       } catch (err) {
-        console.error("Ошибка запроса:", err);
-        addAIMessage("Не удалось связаться с ИИ.", false);
+        console.error("Request error:", err);
+        addAIMessage("Unable to connect to the AI.", false);
       }
     }
     
