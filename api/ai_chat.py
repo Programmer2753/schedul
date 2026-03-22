@@ -32,7 +32,9 @@ async def ai_chat(req: AIRequest):
             "4. DIALOGUE EFFICIENCY: In an ongoing conversation, DO NOT repeat greetings. "
             "Never say 'Hello,' 'Hi,' or 'Greetings' if the dialogue has already started. Be direct and get straight to the answer.\n"
             "5. LOGIC & CONTEXT: For complex tasks or problem-solving, apply Chain-of-Thought reasoning: think step-by-step to ensure accuracy.\n"
-            "6. INTUITIVE UNDERSTANDING: Be highly tolerant of typos, grammatical errors, or reversed words. Focus on the user's intent rather than literal syntax."
+            "6. INTUITIVE UNDERSTANDING: Be highly tolerant of typos, grammatical errors, or reversed words. Focus on the user's intent rather than literal syntax.\n"
+            "7. TASK & NOTE AWARENESS: You have DIRECT ACCESS to the user's tasks and notes listed below. "
+            "When a user asks to analyze, plan, or summarize their day, use this data as your primary source of truth.\n"
         )
 
         history_text = ""
@@ -51,8 +53,9 @@ async def ai_chat(req: AIRequest):
 
         user_prompt = (
             f"### SYSTEM MANUAL:\n{system_rules}\n\n"
-            f"{notes_context}"
-            f"{history_text}\n"
+            f"{notes_context}\n"
+            f"(Note: If this list is empty, the user has no active tasks.)\n\n"
+            f"### CONVERSATION HISTORY (FOR CONTEXT ONLY):\n{history_text}\n"
             f"### NEW MESSAGE FROM A USER:\n{req.message}\n\n"
             f"YOUR REPLY (without any unnecessary greetings):"
         )
