@@ -2778,13 +2778,6 @@ function applyLang(lang) {
         });
         console.log(message, "\n", history, "\n", notes)
 
-        if (response.ok) {
-          const data = await response.json();
-          addAIMessage(data.answer, false);
-          chatContext.push({ role: "assistant", content: data.answer });
-          if (chatContext.length > 10) chatContext.shift();
-        }
-
         if (!response.ok) {
           const errorData = await response.json();
           console.error("Server Error:", errorData);
@@ -2794,6 +2787,8 @@ function applyLang(lang) {
 
         const data = await response.json();
         addAIMessage(data.answer, false);
+        chatContext.push({ role: "assistant", content: data.answer });
+        if (chatContext.length > 10) chatContext.shift();
         console.log(data)
       } catch (err) {
         console.error("Ошибка запроса:", err);
