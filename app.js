@@ -2769,7 +2769,7 @@ function applyLang(lang) {
       chatContext.push({ role: "user", content: message });
 
       const allUsers = JSON.parse(localStorage.getItem('users') || '[]');
-      const currentUserEmail = localStorage.getItem('currentUserEmail');
+      const currentUserEmail = localStorage.getItem('currentUser');
       let userTasks = [];
 
       if (currentUserEmail) {
