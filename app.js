@@ -2790,6 +2790,7 @@ function applyLang(lang) {
         chatContext.push({ role: "assistant", content: data.answer });
         if (chatContext.length > 10) chatContext.shift();
         console.log(data)
+        console.log(chatContext)
       } catch (err) {
         console.error("Ошибка запроса:", err);
         addAIMessage("Не удалось связаться с ИИ.", false);
