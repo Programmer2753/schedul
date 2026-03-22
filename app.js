@@ -2773,6 +2773,7 @@ function applyLang(lang) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: message, history: [], notes: notes })
         });
+        console.log(message, "\n", history, "\n", notes)
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -2783,6 +2784,7 @@ function applyLang(lang) {
 
         const data = await response.json();
         addAIMessage(data.answer, false);
+        console.log(data)
       } catch (err) {
         console.error("Ошибка запроса:", err);
         addAIMessage("Не удалось связаться с ИИ.", false);
