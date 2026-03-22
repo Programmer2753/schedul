@@ -650,7 +650,6 @@ const i18n = {
   }
 };
 
-let chatContext = [];
 
 function applyFullLanguage(lang) {
   const t = i18n[lang] || i18n['en'];
@@ -1668,6 +1667,7 @@ function applyLang(lang) {
     const footer = $('.footer');
     const avatarLetter = document.getElementById('avatarLetter');
     const userAvatar = document.getElementById('userAvatar');
+    let chatContext = JSON.parse(localStorage.getItem('ai_chat_history') || '[]');
 
     function updateUIForUser() {
       const currentUser = getCurrentUser();
@@ -2801,13 +2801,6 @@ function applyLang(lang) {
 
     if (aiSendBtn) {
       aiSendBtn.addEventListener('click', sendAIMessage);
-      console.log("--- ОТПРАВКА НА СЕРВЕР ---");
-      console.table({
-          "Последнее сообщение": userText,
-          "Длина истории": chatHistory.length,
-          "Кол-во заметок": myNotes.length
-      });
-      console.log("Сырые данные истории:", JSON.stringify(chatHistory, null, 2));
     }
 
     if (aiInput) {
