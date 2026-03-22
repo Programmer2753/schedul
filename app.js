@@ -2565,6 +2565,7 @@ function applyLang(lang) {
     const aiSendBtn = document.getElementById('aiSendBtn');
     const aiChat = document.getElementById('aiChat');
     let chatContext = JSON.parse(localStorage.getItem('ai_chat_history') || '[]');
+    window.chatContext = chatContext;
 
     function addAIMessage(message, isUser = false) {
       const messageDiv = document.createElement('div');
@@ -2777,7 +2778,7 @@ function applyLang(lang) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: message, history: chatContext, notes: notes })
         });
-        console.log(message, "\n", history, "\n", notes)
+        console.log("Данные перед отправкой:", { message, chatContext, notes });
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -2790,6 +2791,8 @@ function applyLang(lang) {
         addAIMessage(data.answer, false);
         chatContext.push({ role: "assistant", content: data.answer });
         if (chatContext.length > 10) chatContext.shift();
+        localStorage.setItem('ai_chat_history', JSON.stringify(chatContext));
+        
         console.log(data)
         console.log(chatContext)
       } catch (err) {
