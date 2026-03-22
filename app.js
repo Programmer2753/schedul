@@ -2797,9 +2797,17 @@ function applyLang(lang) {
         addAIMessage("Не удалось связаться с ИИ.", false);
       }
     }
+    
 
     if (aiSendBtn) {
       aiSendBtn.addEventListener('click', sendAIMessage);
+      console.log("--- ОТПРАВКА НА СЕРВЕР ---");
+      console.table({
+          "Последнее сообщение": userText,
+          "Длина истории": chatHistory.length,
+          "Кол-во заметок": myNotes.length
+      });
+      console.log("Сырые данные истории:", JSON.stringify(chatHistory, null, 2));
     }
 
     if (aiInput) {
