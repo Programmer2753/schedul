@@ -650,6 +650,8 @@ const i18n = {
   }
 };
 
+let chatContext = [];
+
 function applyFullLanguage(lang) {
   const t = i18n[lang] || i18n['en'];
   localStorage.setItem('site_lang', lang);
@@ -2563,7 +2565,6 @@ function applyLang(lang) {
     const aiInput = document.getElementById('aiInput');
     const aiSendBtn = document.getElementById('aiSendBtn');
     const aiChat = document.getElementById('aiChat');
-    let chatContext = [];
 
     function addAIMessage(message, isUser = false) {
       const messageDiv = document.createElement('div');
