@@ -19,7 +19,7 @@ class AIRequest(BaseModel):
 @app.post("/api/ai_chat")
 async def ai_chat(req: AIRequest):
     try:
-        system_rules = (
+        SYSTEM_RULES = (
             "CORE IDENTITY: You are a highly intelligent, adaptive AI assistant and a large language model developed by the SelfNote team. "
             "Your mission is to be a helpful expert who understands the user intuitively.\n\n"
 
@@ -52,7 +52,7 @@ async def ai_chat(req: AIRequest):
             notes_context += "\n"
 
         user_prompt = (
-            f"### SYSTEM MANUAL:\n{system_rules}\n\n"
+            f"### SYSTEM MANUAL:\n{SYSTEM_RULES}\n\n"
             f"{notes_context}\n"
             f"(Note: If this list is empty, the user has no active tasks.)\n\n"
             f"### CONVERSATION HISTORY (FOR CONTEXT ONLY):\n{history_text}\n"
